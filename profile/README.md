@@ -1,171 +1,44 @@
-# Fix API
-
 <div align="center">
+  <a href="https://fixapi.ai">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/wordmark-dark.svg">
+      <img alt="FixApi" src="assets/wordmark-light.svg" width="240">
+    </picture>
+  </a>
 
-# The Autonomous Control Plane for External API & Software Dependency Changes
+  <h3>Third-party APIs change, your code adapts</h3>
 
-### Protecting businesses from the silent failure of third-party APIs, deprecations, and upstream breaking changes.
-
-<p align="center">
-  <b>When an external provider changes an API, runNexus discovers every impacted workflow in your software, proves the fix, and delivers a reviewable pull request before production breaks.</b>
-</p>
-
-[The Problem](#the-cost-of-unnoticed-api-changes) •
-[The Solution](#the-runnexus-solution) •
-[Business Value](#business-value--roi) •
-[Market Positioning](#how-runnexus-compares) •
-[Key Capabilities](#key-product-capabilities) •
-[Trust & Governance](#trust-security--governance)
-
----
-
+  <p>
+    <a href="https://fixapi.ai">Website</a>
+    &nbsp;·&nbsp;
+    <a href="https://fixapi.ai">Request a demo</a>
+    &nbsp;·&nbsp;
+    <a href="https://x.com/FixApi_ai">X</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/company/fixapi">LinkedIn</a>
+  </p>
 </div>
 
-## Executive Summary
+<br>
 
-Modern applications depend on dozens of mission-critical third-party services — payment infrastructure, AI models, communication APIs, identity providers, and cloud platforms.
+FixApi watches the third-party APIs your code depends on. When a provider makes a breaking change that affects your product, FixApi finds the affected code and opens a tested pull request with the fix.
 
-Every year, these providers publish hundreds of API deprecations, field retirements, payload modifications, and sunset deadlines. When a provider changes how their service operates:
+Providers rename parameters, deprecate endpoints and replace SDKs on their own schedule. Nobody knows which files call the thing that changed, so teams often find out through a failed request in production. FixApi closes that gap.
 
-- **Manifests don't change** — Traditional dependency bots stay silent because package versions remain unchanged.
-- **Code doesn't change** — Your repository looks clean and your current tests continue to pass against outdated assumptions.
-- **Production breaks silently** — When the vendor's sunset date arrives, customer payments fail, notifications stop delivering, or critical features go offline.
+### How it works
 
-**runNexus** is the dedicated control plane that bridges the gap between **upstream vendor changes** and **downstream application code**. We monitor external providers 24/7, pinpoint your exact business exposure, and deliver tested, ready-to-merge pull requests well in advance of vendor deadlines.
+1. **Install the GitHub App.** Pick the repositories FixApi may read. The app asks only for the permissions it needs.
+2. **Map your API integrations.** FixApi finds the third-party APIs your code calls, down to each call site, through official SDKs and direct HTTP requests.
+3. **Watch the providers.** Official OpenAPI specs, SDK releases and changelogs are checked for changes that touch your code.
+4. **Review a tested pull request.** The fix has already passed your CI commands in a sandbox. Review it and merge it like any other pull request.
 
----
+### Built for teams that are careful with their code
 
-## The Cost of Unnoticed API Changes
+- **You approve every change.** Fixes arrive as pull requests on a new branch. Nothing is merged until your team merges it.
+- **Least-privilege access.** You choose the repositories. FixApi can read your code, create a branch and open a pull request.
+- **Ephemeral by default.** Your source code is used for the scan and is not stored. Only facts such as file paths are kept.
+- **Only what the fix needs goes to the model.** To write a fix, the one affected file is sent to an AI model, never your whole repository.
 
-Engineering teams are caught in a reactive cycle with third-party software dependencies:
+### Availability
 
-> _"Over 30% of service downtime in modern cloud architectures is caused by unnoticed external API and dependency changes."_
-
-### Why the Industry Has a Blind Spot
-
-```
-Upstream API Vendor                       Your Application
-─────────────────────                     ────────────────
-External API provider                     • No code changes made
-deprecates an endpoint or                 • Package versions look up-to-date
-alters a response payload                 • CI test suite passes 100%
-        │                                         │
-        ▼                                         ▼
-┌────────────────────────────────────────────────────────┐
-│                   THE VISIBILITY GAP                   │
-│   Existing tools watch files inside your repository.   │
-│   Nobody connects external vendor announcements to     │
-│   the exact lines of business code that depend on them.│
-└────────────────────────────────────────────────────────┘
-        │
-        ▼
-Months later: The vendor sunsets the feature.
-Result: Silent production outages, failed transactions, and midnight emergency fire drills.
-```
-
----
-
-## The runNexus Solution
-
-runNexus transforms reactive emergency firefighting into an automated, predictable workflow:
-
-```mermaid
-flowchart LR
-    A["1. Continuous Vendor Intelligence<br/>Monitors changelogs, releases, and sunset notices"] --> B["2. Automated Exposure Mapping<br/>Identifies exactly which products and code paths are affected"]
-    B --> C["3. Verified Fix Preparation<br/>Authors the migration and proves it in an isolated environment"]
-    C --> D["4. Human-in-the-Loop Delivery<br/>Opens a clean Pull Request with evidence and deadlines"]
-    D --> E["5. Confident Merge<br/>Engineering reviews and merges on schedule with zero downtime"]
-```
-
-1. **Continuous Vendor Intelligence**: We monitor official provider feeds, changelogs, SDK updates, and deprecation notices across a continuously expanding catalog of third-party APIs and services.
-2. **Automated Exposure Mapping**: When a vendor announces a change, runNexus instantly determines which products, repositories, and workflows are affected — without requiring developers to manually audit codebases.
-3. **Verified Remediation**: Instead of vague alerts, runNexus prepares the precise code migration and validates it in an isolated, security-hardened environment before any code touches your repository.
-4. **Human-in-the-Loop Pull Requests**: Your engineering team receives a complete Pull Request containing the diff, vendor documentation links, sunset deadlines, and automated test proof. Engineers retain full review and merge authority.
-
----
-
-## Business Value & ROI
-
-### 🛡️ Eliminate Silent Production Incidents
-
-Stop external API deprecations from surprising your customers. Upstream changes are detected and resolved weeks or months before provider sunset deadlines.
-
-### ⏱️ Reclaim Valuable Engineering Hours
-
-Eliminate manual changelog tracking, frantic codebase audits, and high-stress emergency migrations. Free your senior developers to focus on core product innovation.
-
-### 📊 Complete Vendor Risk Visibility
-
-Maintain an always-accurate, real-time inventory of all external services and APIs your organization depends on, complete with health indicators and deprecation timelines.
-
-### 🔒 Zero Production Secrets Required
-
-Verification happens against provider specifications and existing test suites in isolated sandboxes. runNexus never requests or requires live production credentials or third-party API keys.
-
----
-
-## How runNexus Compares
-
-| Solution Type                                       | What Triggers It               | Where It Falls Short                                                                                        | The runNexus Advantage                                                                                           |
-| :-------------------------------------------------- | :----------------------------- | :---------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
-| **Package Updaters** _(Dependabot, Renovate)_       | New package version published  | Completely silent when external services change their behavior without a version bump.                      | **Service-Aware**: Detects vendor behavior changes and updates integrations regardless of manifest status.       |
-| **Vulnerability Scanners** _(Snyk, Socket)_         | Known CVE or security advisory | Blind to functional deprecations, endpoint retirements, and payload changes that aren't security flaws.     | **Lifecycle-Focused**: Tracks API deprecations, migrations, and sunset roadmaps across all providers.            |
-| **API Monitoring Dashboards**                       | Specification diffs or alerts  | Generates alerts in an external dashboard with zero understanding of where your code is exposed.            | **Code-Connected**: Connects upstream vendor changes directly to your repositories and delivers the fix.         |
-| **Generic Coding Assistants** _(Copilot, Chatbots)_ | Manual engineer prompts        | Entirely reactive: requires a human to discover the issue, understand the changelog, and write the prompts. | **Autonomous & Proactive**: Discovers the change, maps the impact, proves the fix, and opens the PR proactively. |
-
-> **Bottom Line:** _Other tools update libraries or flag security alerts after the fact. runNexus ensures your business workflows never break when external services change._
-
----
-
-## Key Product Capabilities
-
-### 📬 Actionable Change Inbox
-
-A centralized management feed prioritizing external vendor changes by urgency, severity, and business impact. Track approaching provider sunsets across your entire organization.
-
-### 🧩 Product & Workspace Isolation
-
-Organize repositories by business domains, microservices, or product teams. Each product maintains its own dedicated change inbox, impact findings, and pull requests, while leadership gets an organization-wide overview.
-
-### 🔍 Deep Integration Inventory
-
-Gain continuous visibility into every third-party service, SDK, and external API surface consumed across your organization's software estate.
-
-### 🧪 Pre-Flight Verification Sandboxes
-
-Every proposed migration is compiled and tested in an isolated, egress-denied environment using your repository's existing test suite. Only changes that provably pass are presented as Pull Requests.
-
-### 📬 Context-Rich Pull Requests
-
-Pull requests arrive with everything an engineer needs to approve in minutes:
-
-- Exact business context and migration rationale.
-- Direct links to official provider announcements and changelogs.
-- Official sunset and retirement deadlines.
-- Verification logs showing passing tests and typechecks.
-
----
-
-## Trust, Security & Governance
-
-runNexus is engineered specifically for organizations where security, intellectual property, and reliability are paramount:
-
-- **Human-in-the-Loop**: runNexus never automatically merges code into your production branches. Your engineers always retain full review and approval control.
-- **Metadata-First Architecture**: runNexus maps integration facts and structural relationships without storing or transmitting proprietary application code.
-- **Egress-Denied Execution**: Verification sandboxes run strictly without internet access, ensuring zero data leakage or unauthorized outbound communication.
-- **No Live Vendor Secrets**: Tests run against provider specifications and your existing test doubles. We never handle your live third-party API keys, production tokens, or database credentials.
-- **Enterprise Deployment Options**: Available as a managed Cloud service, an on-premises Enterprise Broker (keeping code inside your perimeter), or fully air-gapped environments.
-
----
-
-## Target Audience & Use Cases
-
-- **Fast-Growing Scale-ups**: Move fast without accumulating hidden integration debt or suffering customer-facing payment and communication outages.
-- **Enterprise Engineering Leaders**: Gain unified governance and proactive risk management across hundreds of microservices and dozens of third-party vendors.
-- **Fintech & Mission-Critical Systems**: Protect mission-critical payment gateways, identity verification systems, and regulatory reporting integrations from unexpected API shifts.
-
----
-
-<div align="center">
-  <sub>Built for resilient, self-maintaining software. Powered by runNexus.</sub>
-</div>
+JavaScript and TypeScript today, with providers such as Stripe, OpenAI, Anthropic, Twilio, Slack and GitHub. We are onboarding teams in small batches. [Request a demo](https://fixapi.ai) to see FixApi on your own code.
